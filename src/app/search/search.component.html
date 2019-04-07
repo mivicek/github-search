@@ -1,0 +1,21 @@
+
+<div class="container">
+  <div class=row>
+    <h2 class="text-center col-md-12">
+      Github search app
+    </h2>
+  </div>
+
+  <form #kw="ngForm" (ngSubmit)="onSubmit(kw)" >
+    <div class="row justify-content-center align-items-center">
+        <input type="text" placeholder="Enter search term" name="keyword" ngModel required>
+        <button type="button" class="btn btn-primary" type="submit" [disabled]="kw.invalid">Search</button>
+    </div>
+  </form>
+
+  <app-results 
+  *ngIf="restService.searchActivated"
+  [extracted]="extracted"
+  ></app-results>
+  
+</div>

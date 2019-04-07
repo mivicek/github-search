@@ -1,0 +1,31 @@
+<div class="container">
+  <h2 class="text-center">User {{ extracted?.name }} details</h2>
+  <div class="row justify-content-center ">
+    <div class="col-md-4">
+      <img src="{{extracted?.avatar_url}}" 
+        class="img-fluid" 
+        alt="User image">
+    </div>
+    <ul class="col-md-8 align-items-left list-group-flush">
+      <li class="list-group-item">
+        <button class="btn btn-primary" (click)="this.router.navigate(['/'])" >Go back </button>
+      </li>
+      <li class="list-group-item"><strong>Name:</strong> {{extracted?.name }}</li>
+      <li class="list-group-item"><strong>Created:</strong> {{extracted?.created_at | date: longDate }}</li>
+      <li class="list-group-item">
+        <strong>Followers: </strong>
+        <ng-container *ngFor="let follower of followers | slice: (curPage * pageSize) - pageSize :curPage * pageSize">
+          <span> {{follower?.login}}</span>
+        </ng-container>
+        <p class=" align-items-center justify-content-center">
+          <button class="btn btn-primary" [disabled] ="curPage == 1" (click)="curPage = curPage - 1">Previous </button>
+            Page {{curPage}} of {{ maxPages }}
+          <button class="btn btn-primary" [disabled] = "curPage >= maxPages" 
+                   (click) ="curPage = curPage + 1">Next</button>
+      </p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

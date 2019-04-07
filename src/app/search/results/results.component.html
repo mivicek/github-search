@@ -1,0 +1,15 @@
+<div class="row">
+  <ng-container 
+    class="list-group justify-content-center col-md-12" 
+    *ngFor="let item of extracted.items let i = index">
+      <a 
+        *ngIf="i<10"
+        routerLink="/user/{{item.login}}" 
+        routerLinkActive="active" 
+        class="list-group-item list-group-item-action ">
+        {{item.login}}
+      </a>
+  </ng-container>
+</div>
+
+
